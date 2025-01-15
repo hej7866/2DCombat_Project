@@ -1,19 +1,30 @@
+using CustomUtility;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using CustomUtility;
+using UnityEngine.InputSystem;
 
 public class InputUser : SingleTon<InputUser>
 {
-    // Start is called before the first frame update
-    void Start()
+    Control control;
+
+    [HideInInspector] public Vector2 moveInput;
+
+    protected override void Awake()
     {
-        
+        control = new Control();
+
+        control.Move.Move.performed += ctx => moveInput = ctx.ReadValue<Vector2>();
     }
 
-    // Update is called once per frame
-    void Update()
+    private void OnEnable()
     {
-        
+        control.Enable();
+    }
+
+    private void OnDisable()
+    {
+        control.Disable();
     }
 }
