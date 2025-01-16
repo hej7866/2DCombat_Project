@@ -7,7 +7,7 @@ using UnityEngine.InputSystem;
 
 public class InputUser : SingleTon<InputUser>
 {
-    Control control;
+    [HideInInspector] public Control control;
 
     [HideInInspector] public Vector2 moveInput;
 
